@@ -1,5 +1,8 @@
 pragma solidity ^0.4.24;
 
+/**
+ *    library to conevrt date or datetime to epoch time.
+ **/
 library DateTime {
     // EPOCH DATE -> January 1, 1970
 
