@@ -34,7 +34,7 @@ library DateTime {
                            uint _month,
                            uint _date) private pure returns (uint _days) {
         _days = 0;
-                for(uint dayIndex=1970; dayIndex<_year; dayIndex++) {
+        for(uint dayIndex=1970; dayIndex<_year; dayIndex++) {
             if(dayIndex % 4 == 0)
                 _days += 366;
             else
