@@ -45,4 +45,8 @@ library DateTime {
         }
         _days = _days + calculateTotalDaysFromJanuary(_year, _month) + (_date - 1);
     }
+
+    function isEpochTimeBetween(uint epochTime, uint startEpochTime, uint endEpochTime) public pure returns (bool) {
+        return (epochTime >= startEpochTime && epochTime <= endEpochTime);
+    }
 }
