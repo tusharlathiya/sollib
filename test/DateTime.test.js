@@ -1,18 +1,9 @@
 const assert = require('assert');
-const ganache = require('ganache-cli');
-const Web3 = require('web3');
-const web3 = new Web3(ganache.provider());
-const json = require('./../build/contracts/DateTime.json');
-
-const interface = json['abi'];
-const bytecode = json['bytecode'];
-let contract,account;
+const deploy = require('./config/deploy');
+let contract;
 
 beforeEach(async function() {
-    account = (await web3.eth.getAccounts())[0];
-    contract = await new web3.eth.Contract(interface)
-        .deploy({data: bytecode})
-        .send({ from: account, gas: '1000000' });
+    contract = await deploy.DateTimeContract;
 });
 
 describe('DateTime',function(){
