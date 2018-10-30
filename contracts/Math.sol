@@ -78,4 +78,8 @@ contract Math {
         }
         return _result;
     }
+
+    function scalb(int _number, int _scalefactor) public pure returns (int _result) {
+        _result = multiply(_number, pow(2,_scalefactor));
+    }
 }

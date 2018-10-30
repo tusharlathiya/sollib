@@ -190,4 +190,34 @@ describe('Math',function(){
             }
         });
     });
+
+    describe('Scalb', function(){
+        it('return scalb number : positive, scalefactor : positive', async function(){
+            const scalb = await contract.methods.scalb(2,5).call();
+            assert.equal(64, scalb, 'should return scalb.');
+        });
+
+        it('return scalb number : zero, scalefactor : positive', async function(){
+            const scalb = await contract.methods.scalb(0,5).call();
+            assert.equal(0, scalb, 'should return scalb.');
+        });
+
+        it('return scalb number : negative, scalefactor : positive', async function(){
+            const scalb = await contract.methods.scalb(-3,5).call();
+            assert.equal(-96, scalb, 'should return scalb.');
+        });
+
+        it('return scalb number : positive, scalefactor : zero', async function(){
+            const scalb = await contract.methods.scalb(3,0).call();
+            assert.equal(3, scalb, 'should return scalb.');
+        });
+
+        it('return scalb number : positive, scalefactor : negative', async function(){
+            try {
+                await contract.methods.scalb(3, -5).call();
+            }catch(error){
+                assert.equal(error.results[error.hashes[0]].reason,'Power must be positive.', 'test validation');
+            }
+        });
+    });
 });
