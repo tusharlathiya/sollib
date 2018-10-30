@@ -37,8 +37,8 @@ contract Math {
         int _mid;
         while(_start <= _end) {
             _mid = (_start + _end) / 2;
-            if(_mid * _mid == _number) return _mid;
-            if(_mid * _mid < _number) {
+            if(multiply(_mid,_mid) == _number) return _mid;
+            if(multiply(_mid,_mid) < _number) {
                 _start  = _mid + 1;
                 _result = _mid;
             } else {
@@ -56,5 +56,26 @@ contract Math {
     function max(int _p, int _q) public pure returns (int) {
         require(_p != _q, 'Both number must not be equal.');
         return (_p > _q) ? _p : _q;
+    }
+
+    function floorCbrt(int _number) public pure returns (int) {
+        require(_number >= 0, 'Number must be zero or positive.');
+        if(_number == 0 || _number == 1) return _number;
+
+        int _start  = 1;
+        int _end    = _number;
+        int _result = 0;
+        int _mid;
+        while(_start <= _end) {
+            _mid = (_start + _end) / 2;
+            if(multiply(_mid,multiply(_mid,_mid)) == _number) return _mid;
+            if(multiply(_mid,multiply(_mid,_mid)) < _number) {
+                _start  = _mid + 1;
+                _result = _mid;
+            } else {
+                _end = _mid - 1;
+            }
+        }
+        return _result;
     }
 }

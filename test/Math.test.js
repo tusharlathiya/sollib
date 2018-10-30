@@ -112,7 +112,7 @@ describe('Math',function(){
 
         it('should return floor of sqrt : negative', async function(){
             try {
-                await contract.methods.floorSqrt(10).call();
+                await contract.methods.floorSqrt(-10).call();
             }
             catch(error){
                 assert.equal(error.results[error.hashes[0]].reason,'Number must be zero or positive.', 'test validation');
@@ -166,6 +166,27 @@ describe('Math',function(){
                 await contract.methods.max(5, 5).call();
             } catch(error) {
                 assert.equal(error.results[error.hashes[0]].reason,'Both number must not be equal.', 'test validation');
+            }
+        });
+    });
+
+    describe('FloorCbrt', function() {
+        it('should return floor of cbrt : positive', async function(){
+            const floorCbrt = await contract.methods.floorCbrt(27).call();
+            assert.equal(3, floorCbrt, 'should return floor number of cbrt.');
+        });
+
+        it('should return floor of cbrt : zero', async function(){
+            const floorCbrt = await contract.methods.floorCbrt(0).call();
+            assert.equal(0, floorCbrt, 'should return floor number of cbrt.');
+        });
+
+        it('should return floor of cbrt : negative', async function(){
+            try {
+                await contract.methods.floorCbrt(-10).call();
+            }
+            catch(error){
+                assert.equal(error.results[error.hashes[0]].reason,'Number must be zero or positive.', 'test validation');
             }
         });
     });
