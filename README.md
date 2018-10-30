@@ -10,3 +10,4 @@ Functions:
   6. min
   7. max
   8. floor cube root
+  9. scalb
