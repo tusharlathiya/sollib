@@ -6,3 +6,4 @@ Functions:
   2. pow
   3. factorial
   4. multiply
+  5. floor sqrt
