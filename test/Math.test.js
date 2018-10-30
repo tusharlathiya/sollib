@@ -98,4 +98,25 @@ describe('Math',function(){
             assert.equal(-24, factorial, 'should return factorial number.');
         });
     });
+
+    describe('FloorSqrt', function() {
+       it('should return floor of sqrt : positive', async function(){
+           const floorSqrt = await contract.methods.floorSqrt(10).call();
+           assert.equal(3, floorSqrt, 'should return floor number of sqrt.');
+       });
+
+        it('should return floor of sqrt : zero', async function(){
+            const floorSqrt = await contract.methods.floorSqrt(0).call();
+            assert.equal(0, floorSqrt, 'should return floor number of sqrt.');
+        });
+
+        it('should return floor of sqrt : negative', async function(){
+            try {
+                await contract.methods.floorSqrt(10).call();
+            }
+            catch(error){
+                assert.equal(error.results[error.hashes[0]].reason,'Number must be zero or positive.', 'test validation');
+            }
+        });
+    });
 });

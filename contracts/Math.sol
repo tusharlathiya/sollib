@@ -26,4 +26,25 @@ contract Math {
         }
         if(_number < 0) _result = -_result;
     }
+
+    function floorSqrt(int _number) public pure returns (int) {
+        require(_number >= 0, 'Number must be zero or positive.');
+        if(_number == 0 || _number == 1) return _number;
+
+        int _start  = 1;
+        int _end    = _number;
+        int _result = 0;
+        int _mid;
+        while(_start <= _end) {
+            _mid = (_start + _end) / 2;
+            if(_mid * _mid == _number) return _mid;
+            if(_mid * _mid < _number) {
+                _start  = _mid + 1;
+                _result = _mid;
+            } else {
+                _end = _mid - 1;
+            }
+        }
+        return _result;
+    }
 }
