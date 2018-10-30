@@ -119,4 +119,54 @@ describe('Math',function(){
             }
         });
     });
+
+    describe('Min', function(){
+        it('should return min number: positives', async function(){
+            const min = await contract.methods.min(5,3).call();
+            assert.equal(3, min, 'return min number');
+        });
+
+        it('should return min number: negatives', async function(){
+            const min = await contract.methods.min(-5,-3).call();
+            assert.equal(-5, min, 'return min number');
+        });
+
+        it('should return min number: positives & negative', async function(){
+            const min = await contract.methods.min(5,-3).call();
+            assert.equal(-3, min, 'return min number');
+        });
+
+        it('should return min number: equal', async function(){
+            try {
+                await contract.methods.min(5, 5).call();
+            } catch(error) {
+                assert.equal(error.results[error.hashes[0]].reason,'Both number must not be equal.', 'test validation');
+            }
+        });
+    });
+
+    describe('Max', function(){
+        it('should return max number: positives', async function(){
+            const max = await contract.methods.max(5,3).call();
+            assert.equal(5, max, 'return max number');
+        });
+
+        it('should return max number: negatives', async function(){
+            const max = await contract.methods.max(-5,-3).call();
+            assert.equal(-3, max, 'return max number');
+        });
+
+        it('should return max number: positives & negative', async function(){
+            const max = await contract.methods.max(5,-3).call();
+            assert.equal(5, max, 'return max number');
+        });
+
+        it('should return max number: equal', async function(){
+            try {
+                await contract.methods.max(5, 5).call();
+            } catch(error) {
+                assert.equal(error.results[error.hashes[0]].reason,'Both number must not be equal.', 'test validation');
+            }
+        });
+    });
 });

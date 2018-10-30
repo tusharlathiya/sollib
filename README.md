@@ -7,3 +7,5 @@ Functions:
   3. factorial
   4. multiply
   5. floor sqrt
+  6. min
+  7. max

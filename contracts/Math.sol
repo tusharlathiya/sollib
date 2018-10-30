@@ -47,4 +47,14 @@ contract Math {
         }
         return _result;
     }
+
+    function min(int _p, int _q) public pure returns (int) {
+        require(_p != _q, 'Both number must not be equal.');
+        return (_p < _q) ? _p : _q;
+    }
+
+    function max(int _p, int _q) public pure returns (int) {
+        require(_p != _q, 'Both number must not be equal.');
+        return (_p > _q) ? _p : _q;
+    }
 }
