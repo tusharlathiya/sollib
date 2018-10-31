@@ -1,6 +1,12 @@
-This is solidity Date to EPOCH time conversion
+Solidity library
+===================================
 
-This project includes Math library:
+Date And Time Library
+Functions:
+  1. Date to EPOCH
+  2. DateTime to EPOCH
+
+Math library:
 Functions:
   1. abs
   2. pow
