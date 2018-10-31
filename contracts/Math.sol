@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract Math {
+library Math {
     function multiply(int _p, int _q) public pure returns (int) {
         return _p * _q;
     }
